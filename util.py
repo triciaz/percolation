@@ -38,14 +38,4 @@ class Graph:
     def IncidentEdges(self, v):
         return [e for e in self.E if (e.a == v or e.b == v)]
 
-    # Removes the given vertex v from the graph, as well as the edges attached to it.
-    # Removes all isolated vertices from the graph as well.
-    def Percolate(self, v):
-        # Get attached edges to this vertex, remove them.
-        for e in self.IncidentEdges(v):
-            self.E.remove(e)
-        # Remove this vertex.
-        self.V.remove(v)
-        # Remove all isolated vertices.
-        to_remove = {u for u in self.V if len(self.IncidentEdges(u)) == 0}
-        self.V.difference_update(to_remove)
+

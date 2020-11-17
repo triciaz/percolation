@@ -8,6 +8,18 @@ from util import Vertex
 from util import Edge
 from util import Graph
 
+# Removes the given vertex v from the graph, as well as the edges attached to it.
+# Removes all isolated vertices from the graph as well.
+def Percolate(graph, v):
+    # Get attached edges to this vertex, remove them.
+    for e in graph.IncidentEdges(v):
+        graph.E.remove(e)
+    # Remove this vertex.
+    graph.V.remove(v)
+    # Remove all isolated vertices.
+    to_remove = {u for u in graph.V if len(graph.IncidentEdges(u)) == 0}
+    graph.V.difference_update(to_remove)
+
 # This is the main game loop.
 def PlayGraph(s, t, graph):
     players = [s, t]
@@ -58,7 +70,7 @@ def PlayGraph(s, t, graph):
             if original_vertex.color != active_player:
                 return 1 - active_player
             # If output is reasonable, remove ("percolate") this vertex + edges attached to it, as well as isolated vertices.
-            graph.Percolate(original_vertex)
+            Percolate(graph, original_vertex)
         # Only case when this should fire is if chosen_vertex.index does not exist or similar error.
         except Exception as e:
             traceback.print_exc(file=sys.stdout)
