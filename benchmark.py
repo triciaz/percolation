@@ -8,8 +8,6 @@ from util import Vertex
 from util import Edge
 from util import Graph
 
-
-
 # This is the main game loop.
 def PlayGraph(s, t, graph):
     players = [s, t]
@@ -114,7 +112,8 @@ if __name__ == "__main__":
     # NOTE: we are not creating INSTANCES of these classes, we're defining the players
     # as the class itself. This lets us call the static methods.
     p1 = RandomPlayer
-    # Uncomment this if you'd like to test your PercolationPlayer.
+    # Comment the above line and uncomment the next two if
+    # you'd like to test the PercolationPlayer code in this repo.
     # from percolator import PercolationPlayer
     # p1 = PercolationPlayer
     p2 = RandomPlayer
