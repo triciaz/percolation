@@ -107,7 +107,7 @@ def PlayGraph(s, t, graph):
                 return 1 - active_player
             if original_vertex.color != active_player:
                 return 1 - active_player
-            # If output is reasonable, remove ("percolate") this vertex + edge attached to it, as well as isolated edges.
+            # If output is reasonable, remove ("percolate") this vertex + edges attached to it, as well as isolated vertices.
             graph.Percolate(original_vertex)
         # Only case when this should fire is if chosen_vertex.index does not exist or similar error.
         except Exception as e:
