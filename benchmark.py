@@ -29,7 +29,7 @@ def PlayGraph(s, t, graph):
     while any(v.color == -1 for v in graph.V):
         # First, try to just *run* the player's code to get their vertex.
         try:
-            chosen_vertex = players[active_player].ChooseVertexToColor(copy.copy(graph), active_player)
+            chosen_vertex = players[active_player].ChooseVertexToColor(copy.deepcopy(graph), active_player)
         except Exception as e:
             traceback.print_exc(file=sys.stdout)
             return 1 - active_player
@@ -58,7 +58,7 @@ def PlayGraph(s, t, graph):
     while len([v for v in graph.V if v.color == active_player]) > 0:
         # First, try to just *run* the removal code.
         try:
-            chosen_vertex = players[active_player].ChooseVertexToRemove(copy.copy(graph), active_player)
+            chosen_vertex = players[active_player].ChooseVertexToRemove(copy.deepcopy(graph), active_player)
         except Exception as e:
             traceback.print_exc(file=sys.stdout)
             return 1 - active_player

@@ -27,6 +27,11 @@ class Graph:
     def __repr__(self):
         return "Graph({0}, {1})".format(self.V, self.E)
 
+    def __deepcopy__(self, memo):
+        V = {v.index: Vertex(v.index, v.color) for v in self.V}
+        E = [Edge(V[e.a.index], V[e.b.index]) for e in self.E]
+        return Graph(V.values(), E)
+
     # Gets a vertex with given index if it exists, else return None.
     def GetVertex(self, i):
         for v in self.V:
